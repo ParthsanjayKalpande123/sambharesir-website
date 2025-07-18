@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students - Prof. Govinda Sambhare</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #e0f2fe, #e8eaf6); /* Light blue to light indigo gradient */
+            min-height: 100vh;
+            color: #333;
+        }
+        /* Header styles (using inline Tailwind-like classes, but adding a transition for consistency) */
+        header {
+            transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Soft transition for header */
+        }
+        .header-title {
+            font-family: 'serif', sans-serif; /* Using a generic serif for consistency with user's header */
+            font-weight: bold;
+            font-size: 1.5rem; /* Equivalent to text-2xl */
+        }
+        .nav-link-custom {
+            font-weight: 500; /* Equivalent to font-medium */
+            color: inherit; /* Inherit color, then hover effect */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .nav-link-custom:hover {
+            color: #1d4ed8; /* blue-700 equivalent */
+        }
+        .nav-link-active {
+            color: #1d4ed8; /* blue-700 equivalent */
+            font-weight: 600; /* font-semibold equivalent */
+        }
+
+        .hero-section {
+            padding: 4rem 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .hero-section h1 {
+            color: #312e81; /* Dark indigo */
+            font-weight: 800;
+            font-size: 3rem; /* display-4 equivalent */
+            margin-bottom: 1rem;
+        }
+        .hero-section p {
+            color: #555;
+            font-size: 1.25rem; /* lead equivalent */
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Card styling for videos and assignments */
+        .content-card {
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.07); /* Soft shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            height: 100%; /* Ensure cards in a row have same height */
+            display: flex;
+            flex-direction: column;
+        }
+        .content-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Video specific styles */
+        .video-thumbnail-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+        .video-thumbnail-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the area */
+            border: 0;
+        }
+        .video-thumbnail-container .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem; /* Large play icon */
+            color: rgba(255, 255, 255, 0.8); /* White with transparency */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            border-radius: 50%;
+            padding: 0.5rem 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .video-thumbnail-container:hover .play-icon {
+            font-size: 3.5rem; /* Slightly larger on hover */
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2a276e;
+            margin-bottom: 0.5rem;
+        }
+        .video-description {
+            font-size: 0.95rem;
+            color: #555;
+            flex-grow: 1; /* Allows description to take available space */
+        }
+
+        /* Assignment specific styles */
+        .assignment-card {
+            border-left: 5px solid #4f46e5; /* Indigo border on left */
+            padding-left: 1.25rem;
+        }
+        .assignment-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2a276e;
+            margin-bottom: 0.25rem;
+        }
+        .assignment-details {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .assignment-status {
+            font-weight: 600;
+            color: #22c55e; /* Green for open status */
+        }
+        .assignment-status.closed {
+            color: #ef4444; /* Red for closed status */
+        }
+
+        /* Upload section styles */
+        .upload-section {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.07);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        .upload-section h2 {
+            color: #312e81;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .upload-btn {
+            background-color: #312e81; /* Darker indigo for the button */
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for subtle press effect */
+        }
+        .upload-btn:hover {
+            background-color: #1e205a; /* Even darker indigo on hover */
+            color: white; /* Keep text white on hover */
+            transform: translateY(-1px); /* Subtle lift on hover */
+        }
+        .upload-btn:active {
+            transform: translateY(0); /* Press effect */
+            background-color: #4f46e5; /* Original indigo on active */
+        }
+
+
+        .footer-section {
+            padding: 2rem 0;
+            color: #ffffff;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 4rem;
+            background-color: #000000; /* Black footer */
+        }
+
+        /* Animation for fade-in effect */
+        .fade-in-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            header nav {
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            header nav a {
+                padding: 0.25rem 0.5rem;
+            }
+            .header-title {
+                font-size: 1.25rem;
+            }
+            .hero-section {
+                padding: 3rem 0;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .content-card {
+                padding: 1rem;
+            }
+            .video-title, .assignment-title {
+                font-size: 1.1rem;
+            }
+            .video-description, .assignment-details {
+                font-size: 0.85rem;
+            }
+            .video-thumbnail-container .play-icon {
+                font-size: 2.5rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid p-0">
+        <!-- Header Section -->
+        <header class="flex justify-between items-center px-8 py-4 border-b shadow-sm sticky top-0 bg-white z-10">
+            <h1 class="header-title">Prof. Govinda Sambhare</h1>
+            <nav class="space-x-6">
+                <a href="index.html" class="nav-link-custom">Home</a>
+                <a href="research.html" class="nav-link-custom">Research</a>
+                <a href="teaching.html" class="nav-link-custom">Teaching</a>
+                <a href="publications.html" class="nav-link-custom">Publications</a>
+                <a href="awards.html" class="nav-link-custom">Awards</a>
+                <a href="students.html" class="nav-link-custom nav-link-active">Students</a>
+                <a href="contact.html" class="nav-link-custom">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section for Students -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>Student Resources</h1>
+                <p>
+                    Access course materials, video lectures, assignments, and submit your work here.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Content Section -->
+        <main class="container py-5">
+            <!-- Video Lectures Section -->
+            <h2 class="text-center text-indigo-800 font-bold mb-5">Video Lectures</h2>
+            <div id="video-lectures-list" class="row justify-content-center g-4 mb-5">
+                <!-- Video cards will be dynamically loaded here by JavaScript -->
+            </div>
+
+            <!-- Assignments Section -->
+            <h2 class="text-center text-indigo-800 font-bold mb-5 mt-5">Assignments</h2>
+            <div id="assignments-list" class="row justify-content-center g-4">
+                <!-- Assignment cards will be dynamically loaded here by JavaScript -->
+            </div>
+
+            <!-- Assignment Upload Section -->
+            <div class="upload-section mx-auto" style="max-width: 700px;">
+                <h2 class="text-center">Upload Your Assignment</h2>
+                <form id="assignment-upload-form">
+                    <div class="mb-3">
+                        <label for="assignmentTitle" class="form-label">Assignment Title</label>
+                        <input type="text" class="form-control" id="assignmentTitle" placeholder="e.g., Assignment 1: Algorithm Analysis" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentName" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="studentName" placeholder="e.g., John Doe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="assignmentFile" class="form-label">Upload File (PDF, DOCX, ZIP)</label>
+                        <input class="form-control" type="file" id="assignmentFile" accept=".pdf,.doc,.docx,.zip" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn upload-btn">Submit Assignment</button>
+                    </div>
+                </form>
+                <div id="upload-status" class="mt-3 text-center text-success" style="display: none;"></div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer-section text-center">
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Prof. Govinda Sambhare. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const studentVideos = [
+                {
+                    id: 1,
+                    title: "Lecture 1: Introduction to Algorithms",
+                    description: "An overview of fundamental algorithms and their importance in computer science. This video covers basic concepts like time complexity, Big O notation, and common algorithm types.",
+                    youtubeId: "kMARAQm2vw8", // Placeholder YouTube ID (Rick Astley - Never Gonna Give You Up)
+                    category: "Lectures"
+                },
+                {
+                    id: 2,
+                    title: "Problem Solving Session: Dynamic Programming",
+                    description: "Walkthrough of classic dynamic programming problems and techniques. Learn how to break down complex problems into simpler subproblems and build solutions iteratively.",
+                    youtubeId: "dQw4w9WgXcQ", // Placeholder YouTube ID
+                    category: "Problem Solving"
+                },
+                {
+                    id: 3,
+                    title: "Guest Lecture: AI in Healthcare",
+                    description: "Insights from an industry expert on the application of AI in modern healthcare systems, discussing ethical considerations and future trends.",
+                    youtubeId: "dQw4w9WgXcQ", // Placeholder YouTube ID
+                    category: "Guest Lectures"
+                },
+                {
+                    id: 4,
+                    title: "Tutorial: Setting up Your Development Environment",
+                    description: "A step-by-step guide to setting up your coding environment for this course, including necessary software installations and configurations.",
+                    youtubeId: "dQw4w9WgXcQ", // Placeholder YouTube ID
+                    category: "Tutorials"
+                }
+            ];
+
+            const assignments = [
+                {
+                    id: 1,
+                    title: "Assignment 1: Algorithm Analysis",
+                    dueDate: "2025-07-25",
+                    description: "Analyze the time complexity of given algorithms and propose optimizations. Submit your detailed report in PDF format.",
+                    status: "Open"
+                },
+                {
+                    id: 2,
+                    title: "Assignment 2: Graph Traversal",
+                    dueDate: "2025-08-08",
+                    description: "Implement BFS and DFS algorithms for a given graph structure. Provide your code and a brief explanation.",
+                    status: "Open"
+                },
+                {
+                    id: 3,
+                    title: "Project Proposal: Final Project",
+                    dueDate: "2025-08-22",
+                    description: "Submit a detailed proposal for your final course project, outlining your chosen topic, methodology, and expected outcomes.",
+                    status: "Open"
+                },
+                {
+                    id: 4,
+                    title: "Quiz 1: Data Structures Basics",
+                    dueDate: "2025-07-18",
+                    description: "A short quiz covering fundamental data structures like arrays, linked lists, and trees.",
+                    status: "Closed" // Example of a closed assignment
+                }
+            ];
+
+            const videoLecturesListDiv = document.getElementById('video-lectures-list');
+            studentVideos.forEach(video => {
+                // Construct YouTube thumbnail URL
+                const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`; // High quality thumbnail
+                const youtubeVideoUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+
+                const videoCardHtml = `
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card content-card fade-in-card">
+                            <div class="video-thumbnail-container">
+                                <a href="${youtubeVideoUrl}" target="_blank" rel="noopener noreferrer">
+                                    <img src="${thumbnailUrl}" alt="Video Thumbnail: ${video.title}" onerror="this.src='https://placehold.co/480x270/e0e0e0/555555?text=Video+Unavailable'">
+                                    <i class="fas fa-play-circle play-icon"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="video-title">${video.title}</h3>
+                                <p class="video-description">${video.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                videoLecturesListDiv.insertAdjacentHTML('beforeend', videoCardHtml);
+            });
+
+            const assignmentsListDiv = document.getElementById('assignments-list');
+            assignments.forEach(assignment => {
+                const assignmentCardHtml = `
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <div class="card content-card assignment-card fade-in-card">
+                            <div class="card-body">
+                                <h3 class="assignment-title">${assignment.title}</h3>
+                                <p class="assignment-details">
+                                    <i class="far fa-calendar-alt me-2"></i> Due: ${assignment.dueDate}
+                                </p>
+                                <p class="assignment-details">
+                                    <i class="fas fa-info-circle me-2"></i> Status: <span class="assignment-status ${assignment.status.toLowerCase()}">${assignment.status}</span>
+                                </p>
+                                <p class="assignment-details">${assignment.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                assignmentsListDiv.insertAdjacentHTML('beforeend', assignmentCardHtml);
+            });
+
+            // Assignment Upload Form Submission (Placeholder)
+            const uploadForm = document.getElementById('assignment-upload-form');
+            const uploadStatus = document.getElementById('upload-status');
+
+            uploadForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const title = document.getElementById('assignmentTitle').value;
+                const name = document.getElementById('studentName').value;
+                const fileInput = document.getElementById('assignmentFile');
+                const file = fileInput.files[0];
+
+                if (file) {
+                    // In a real application, you would send this data to a server
+                    // using fetch() or XMLHttpRequest.
+                    console.log(`Uploading: ${title} by ${name}, File: ${file.name}`);
+                    uploadStatus.textContent = `"${file.name}" uploaded successfully for "${title}" by "${name}"! (This is a demo, no actual upload occurred)`;
+                    uploadStatus.style.display = 'block';
+                    uploadStatus.classList.remove('text-danger');
+                    uploadStatus.classList.add('text-success');
+
+                    // Clear form
+                    uploadForm.reset();
+                } else {
+                    uploadStatus.textContent = 'Please select a file to upload.';
+                    uploadStatus.style.display = 'block';
+                    uploadStatus.classList.remove('text-success');
+                    uploadStatus.classList.add('text-danger');
+                }
+
+                // Hide status message after a few seconds
+                setTimeout(() => {
+                    uploadStatus.style.display = 'none';
+                }, 5000);
+            });
+
+            // JavaScript for fade-in animation on scroll
+            const fadeInCards = document.querySelectorAll('.fade-in-card');
+
+            const observerOptions = {
+                root: null, // viewport as the root
+                rootMargin: '0px',
+                threshold: 0.2 // 20% of the item must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            fadeInCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards - Prof. Govinda Sambhare</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #e0f2fe, #e8eaf6); /* Light blue to light indigo gradient */
+            min-height: 100vh;
+            color: #333;
+        }
+        /* Header styles (using inline Tailwind-like classes, but adding a transition for consistency) */
+        header {
+            transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Soft transition for header */
+        }
+        .header-title {
+            font-family: 'serif', sans-serif; /* Using a generic serif for consistency with user's header */
+            font-weight: bold;
+            font-size: 1.5rem; /* Equivalent to text-2xl */
+        }
+        .nav-link-custom {
+            font-weight: 500; /* Equivalent to font-medium */
+            color: inherit; /* Inherit color, then hover effect */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .nav-link-custom:hover {
+            color: #1d4ed8; /* blue-700 equivalent */
+        }
+        .nav-link-active {
+            color: #1d4ed8; /* blue-700 equivalent */
+            font-weight: 600; /* font-semibold equivalent */
+        }
+
+        .hero-section {
+            padding: 4rem 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .hero-section h1 {
+            color: #312e81; /* Dark indigo */
+            font-weight: 800;
+            font-size: 3rem; /* display-4 equivalent */
+            margin-bottom: 1rem;
+        }
+        .hero-section p {
+            color: #555;
+            font-size: 1.25rem; /* lead equivalent */
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* New card styling for awards */
+        .award-card {
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            border: none; /* Remove default border */
+            background-color: #ffffff;
+            padding: 2.5rem; /* Increased padding */
+            height: 100%; /* Ensure cards in a row have same height */
+            position: relative;
+            overflow: hidden; /* Hide overflow for subtle background */
+        }
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(232, 234, 246, 0.3) 0%, transparent 70%); /* Subtle background pattern */
+            z-index: 0;
+            opacity: 0.5;
+        }
+        .award-card:hover {
+            transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .award-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem; /* More space below header */
+            position: relative;
+            z-index: 1; /* Ensure content is above pseudo-element */
+        }
+        .award-icon-wrapper {
+            background-color: #f59e0b; /* Amber background for icon */
+            border-radius: 50%;
+            width: 60px; /* Larger icon circle */
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5rem; /* More space to the right of icon */
+            box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3); /* Shadow for the icon circle */
+        }
+        .award-icon {
+            color: #ffffff; /* White icon */
+            font-size: 2.2rem; /* Larger icon size */
+        }
+        .award-title-group {
+            flex-grow: 1;
+        }
+        .award-title {
+            font-size: 1.6rem; /* Even larger title */
+            font-weight: 800; /* Extra bold title */
+            color: #2a276e;
+            margin-bottom: 0.25rem; /* Reduced space below title */
+            line-height: 1.2;
+        }
+        .award-organization {
+            font-size: 1.1rem; /* Larger organization text */
+            color: #444;
+            font-weight: 500;
+        }
+        .award-year {
+            font-size: 1rem; /* Larger year text */
+            color: #666;
+            font-weight: 600;
+            margin-top: 0.5rem; /* Space below organization */
+            display: block; /* Ensure it's on its own line */
+        }
+        .award-description {
+            font-size: 1rem; /* Slightly larger description text */
+            color: #555;
+            line-height: 1.6;
+            margin-top: 1.5rem; /* More space above description */
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            padding: 2rem 0;
+            color: #ffffff;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 4rem;
+            background-color: #000000; /* Black footer */
+        }
+
+        /* Animation for fade-in effect */
+        .fade-in-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) { /* Adjust for medium and small screens */
+            .award-card {
+                padding: 2rem;
+            }
+            .award-title {
+                font-size: 1.4rem;
+            }
+            .award-organization {
+                font-size: 1rem;
+            }
+            .award-icon-wrapper {
+                width: 50px;
+                height: 50px;
+                margin-right: 1rem;
+            }
+            .award-icon {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 767.98px) { /* Adjust for small screens */
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            header nav {
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            header nav a {
+                padding: 0.25rem 0.5rem;
+            }
+            .header-title {
+                font-size: 1.25rem;
+            }
+            .hero-section {
+                padding: 3rem 0;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .award-card {
+                padding: 1.5rem;
+            }
+            .award-header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 1rem;
+            }
+            .award-icon-wrapper {
+                margin-right: 0;
+                margin-bottom: 0.75rem;
+            }
+            .award-title {
+                font-size: 1.2rem;
+            }
+            .award-organization, .award-year, .award-description {
+                font-size: 0.9rem;
+            }
+            .award-year {
+                margin-top: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid p-0">
+        <!-- Header Section -->
+        <header class="flex justify-between items-center px-8 py-4 border-b shadow-sm sticky top-0 bg-white z-10">
+            <h1 class="header-title">Prof. Govinda Sambhare</h1>
+            <nav class="space-x-6">
+                <a href="index.html" class="nav-link-custom">Home</a>
+                <a href="research.html" class="nav-link-custom">Research</a>
+                <a href="teaching.html" class="nav-link-custom">Teaching</a>
+                <a href="publications.html" class="nav-link-custom">Publications</a>
+                <a href="awards.html" class="nav-link-custom nav-link-active">Awards</a>
+                <a href="students.html" class="nav-link-custom">Students</a>
+                <a href="contact.html" class="nav-link-custom">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section for Awards -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>My Awards & Honors</h1>
+                <p>
+                    Recognitions for academic excellence, research contributions, and teaching achievements.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Content Section - Awards List -->
+        <main class="container py-5">
+            <div id="awards-list" class="row justify-content-center g-4">
+                <!-- Awards will be dynamically loaded here by JavaScript -->
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer-section text-center">
+            <div class="container">
+                <p>&copy; <span id="current-year"></span> Prof. Govinda Sambhare. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const awards = [
+                {
+                    id: 1,
+                    title: "Outstanding Researcher Award",
+                    organization: "University of California, Berkeley",
+                    year: 2023,
+                    description: "Awarded for significant contributions to the field of federated learning and edge computing, leading to multiple high-impact publications and a new research initiative.",
+                    icon: "fas fa-trophy" // Trophy icon
+                },
+                {
+                    id: 2,
+                    title: "Excellence in Teaching Award",
+                    organization: "Stanford University, Electrical Engineering Department",
+                    year: 2022,
+                    description: "Recognized for innovative teaching methods and exceptional student feedback in advanced signal processing courses, resulting in a 15% increase in course enrollment.",
+                    icon: "fas fa-award" // Award icon
+                },
+                {
+                    id: 3,
+                    title: "Best Paper Award",
+                    organization: "IEEE International Conference on Communications (ICC)",
+                    year: 2021,
+                    description: "For the paper 'Optimizing Resource Allocation in 6G Networks using Deep Reinforcement Learning', cited over 100 times in two years.",
+                    icon: "fas fa-file-alt" // File icon for paper
+                },
+                {
+                    id: 4,
+                    title: "Doctoral Fellowship",
+                    organization: "National Science Foundation (NSF)",
+                    year: 2018,
+                    description: "Prestigious fellowship supporting doctoral research in secure and privacy-preserving machine learning, enabling groundbreaking work on differential privacy.",
+                    icon: "fas fa-user-graduate" // Graduate cap icon
+                },
+                {
+                    id: 5,
+                    title: "Dean's List",
+                    organization: "XYZ University",
+                    year: "2015-2019",
+                    description: "Consistently achieved academic distinction throughout undergraduate studies, maintaining a GPA of 3.9/4.0.",
+                    icon: "fas fa-star" // Star icon
+                },
+                {
+                    id: 6,
+                    title: "Innovation Grant Recipient",
+                    organization: "Tech Solutions Inc.",
+                    year: 2020,
+                    description: "Secured funding for developing a novel AI-powered diagnostic tool, demonstrating entrepreneurial spirit and technical prowess.",
+                    icon: "fas fa-lightbulb" // Lightbulb icon
+                }
+            ];
+
+            const awardsListDiv = document.getElementById('awards-list');
+
+            awards.forEach(award => {
+                const awardCardHtml = `
+                    <div class="col-12 col-md-6 d-flex">
+                        <div class="card award-card fade-in-card"> <!-- Added fade-in-card class -->
+                            <div class="card-body d-flex flex-column">
+                                <div class="award-header">
+                                    <div class="award-icon-wrapper">
+                                        <i class="${award.icon} award-icon"></i>
+                                    </div>
+                                    <div class="award-title-group">
+                                        <h2 class="award-title">${award.title}</h2>
+                                        <p class="award-organization">${award.organization}</p>
+                                    </div>
+                                </div>
+                                <p class="award-year">${award.year}</p>
+                                <p class="award-description flex-grow-1">${award.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                awardsListDiv.insertAdjacentHTML('beforeend', awardCardHtml);
+            });
+
+            // JavaScript for fade-in animation on scroll
+            const fadeInCards = document.querySelectorAll('.fade-in-card');
+
+            const observerOptions = {
+                root: null, // viewport as the root
+                rootMargin: '0px',
+                threshold: 0.2 // 20% of the item must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            fadeInCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

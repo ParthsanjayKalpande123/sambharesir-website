@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professor Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            /* Added for sticky footer */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            
+            font-family: 'Inter', sans-serif; /* Assuming Inter font from other pages */
+            background-color: #f8f8f8; /* A light background for consistency */
+            color: #333; /* Standard text color */
+        }
+        /* Ensure main content area grows to push footer down */
+        main {
+            flex-grow: 1;
+        }
+
+        .footer-section {
+            padding: 2rem 0;
+            color: #ffffff;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+            /* margin-top: 4rem; Removed fixed margin-top as auto handles it */
+            background-color: #000000; /* Black footer */
+            margin-top: auto; /* Pushes the footer to the bottom */
+        }
+
+        /* Styles for header consistency with other pages */
+        header {
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+        .header-title {
+            font-family: 'serif', sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .nav-link-custom {
+            font-weight: 500;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .nav-link-custom:hover {
+            color: #1d4ed8; /* blue-700 equivalent */
+        }
+        .nav-link-active {
+            color: #1d4ed8; /* blue-700 equivalent */
+            font-weight: 600;
+        }
+        
+        /* Responsive adjustments for header (copied from other pages for consistency) */
+        @media (max-width: 767.98px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            header nav {
+                margin-top: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            header nav a {
+                padding: 0.25rem 0.5rem;
+            }
+            .header-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navbar -->
+    <header class="flex justify-between items-center px-8 py-4 border-b shadow-sm sticky top-0 bg-white z-10">
+        <h1 class="text-2xl font-serif font-bold">Prof. Govinda Sambhare</h1>
+        <nav class="space-x-6 font-medium">
+            <a href="index.html" class="nav-link-active">Home</a> <!-- Set Home as active -->
+            <a href="research.html" class="nav-link-custom">Research</a>
+            <a href="teaching.html" class="nav-link-custom">Teaching</a>
+            <a href="publications.html" class="nav-link-custom">Publications</a>
+            <a href="awards.html" class="nav-link-custom">Awards</a>
+            <a href="students.html" class="nav-link-custom">Students</a>
+            <a href="contact.html" class="nav-link-custom">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section (Home) - Wrapped in <main> for sticky footer -->
+    <main>
+        <section class="grid grid-cols-1 md:grid-cols-2 p-12 items-center gap-8">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">Prof. Govinda Sambhare</h2>
+                <p class="text-lg">Assistant Professor, Computer Engineering Department, PCCoE</p>
+                <p class="text-md mt-2">M.E. Computer Networks | B.E. Computer Engineering</p>
+                <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"><a href="teaching.html">View Profile</a></button>
+            </div>
+            <img src="sambhare.png" alt="Professor portrait" class="rounded-2xl shadow-xl w-full max-w-xs mx-auto">
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section text-center">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Prof. Govinda Sambhare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
